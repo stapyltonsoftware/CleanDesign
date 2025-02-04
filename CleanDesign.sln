@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanDesign.ISBNService", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanDesign.Data.EntityFramework", "CleanDesign.Data.EntityFramework\CleanDesign.Data.EntityFramework.csproj", "{28812303-DD17-493B-9486-78892DE173A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanDesign.Core.Tests", "CleanDesign.Core.Tests\CleanDesign.Core.Tests.csproj", "{ED8995D3-32DF-4C2D-8AA7-6182C7D830C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{28812303-DD17-493B-9486-78892DE173A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28812303-DD17-493B-9486-78892DE173A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28812303-DD17-493B-9486-78892DE173A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED8995D3-32DF-4C2D-8AA7-6182C7D830C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED8995D3-32DF-4C2D-8AA7-6182C7D830C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED8995D3-32DF-4C2D-8AA7-6182C7D830C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED8995D3-32DF-4C2D-8AA7-6182C7D830C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
