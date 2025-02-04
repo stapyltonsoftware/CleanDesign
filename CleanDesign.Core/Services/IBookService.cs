@@ -10,6 +10,7 @@ namespace CleanDesign.Core.Services
 {
     public interface IBookService
     {
+        Task<IEnumerable<BookDTO>> GetAllAsync();
         Task<BookDTO> GetBookByIdAsync(int id);
         Task<BookDTO> GetBookByISBNAsync(string isbn);
         Task<IEnumerable<BookDTO>> SearchBookByTitleAsync(string isbn);

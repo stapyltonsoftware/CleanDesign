@@ -9,6 +9,7 @@ namespace CleanDesign.Core.Data.Repositories
 {
     public interface IBookRepository
     {
+        Task<IEnumerable<Book>> GetAllAsync();
         Task<Book> GetBookByIdAsync(int id);
         Task<Book> GetBookByISBNAsync(string isbn);
         Task<IEnumerable<Book>> SearchBookByTitleAsync(string isbn);

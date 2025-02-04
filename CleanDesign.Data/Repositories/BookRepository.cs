@@ -1,5 +1,7 @@
 ﻿using CleanDesign.Core.Data.Repositories;
 using CleanDesign.Core.Entities;
+using Dapper;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,29 +20,48 @@ namespace CleanDesign.Data.Repositories
             _dbConnection = dbConnection;
         }
 
-        public Task<Book> AddBookAsync(Book book)
+        public async Task<Book> GetBookByIdAsync(int id)
         {
-            
+
+            return await _dbConnection.QuerySingleOrDefaultAsync<Book>(
+                "SELECT * FROM Books WHERE BookId = @Id", new { Id = id });
         }
 
-        public Task<Book> GetBookByIdAsync(int id)
+        public async Task<Book> GetBookByISBNAsync(string isbn)
         {
-            throw new NotImplementedException();
+
+            return await _dbConnection.QuerySingleOrDefaultAsync<Book>(
+                "SELECT * FROM Books WHERE ISBN = @ISBN", new { ISBN = isbn });
         }
 
-        public Task<Book> GetBookByISBNAsync(string isbn)
+        public async Task<IEnumerable<Book>> SearchBookByTitleAsync(string title)
         {
-            throw new NotImplementedException();
+
+            return await _dbConnection.QueryAsync<Book>(
+                "SELECT * FROM Books WHERE Title LIKE @Title", new { Title = $"%{title}%" });
         }
 
-        public Task<IEnumerable<Book>> SearchBookByTitleAsync(string isbn)
+        public async Task<Book> AddBookAsync(Book book)
         {
-            throw new NotImplementedException();
+
+            var id = await _dbConnection.ExecuteScalarAsync<int>(
+                "INSERT INTO Books (Title, Author, ISBN, IsCheckedOut) OUTPUT INSERTED.BookId " +
+                "VALUES (@Title, @Author, @ISBN, @IsCheckedOut)", book);
+            book.BookId = id;
+            return book;
         }
 
-        public Task UpdateBookAsync(Book book)
+        public async Task UpdateBookAsync(Book book)
         {
-            throw new NotImplementedException();
+
+            await _dbConnection.ExecuteAsync(
+                "UPDATE Books SET Title = @Title, Author = @Author, ISBN = @ISBN, IsCheckedOut = @IsCheckedOut " +
+                "WHERE BookId = @BookId", book);
+        }
+
+        public async Task<IEnumerable<Book>> GetAllAsync()
+        {
+            return await _dbConnection.QueryAsync<Book>($@"SELECT * FROM Books");
         }
     }
 }

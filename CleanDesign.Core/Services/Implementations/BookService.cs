@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CleanDesign.Core.Data.Repositories;
 using CleanDesign.Core.DTOs;
+using CleanDesign.Core.Entities;
 using CleanDesign.Core.Exceptions;
 using CleanDesign.Core.ThirdPartyServices;
 using System;
@@ -29,7 +30,7 @@ namespace CleanDesign.Core.Services.Implementations
             var existingBook = await _bookRepository.GetBookByISBNAsync(isbn);
 
             if (existingBook != null)
-                throw new InvalidOperationException($"Book with ISBN {isbn} already exists in out collection");
+                throw new InvalidOperationException($"Book with ISBN {isbn} already exists in the collection");
 
             var book = await _iSBNSearchService.GetBookByISBNAsync(isbn);
 
@@ -61,6 +62,12 @@ namespace CleanDesign.Core.Services.Implementations
 
             book.CheckOut();
             await _bookRepository.UpdateBookAsync(book);
+        }
+
+        public async Task<IEnumerable<BookDTO>> GetAllAsync()
+        {
+            var books = await _bookRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<BookDTO>>(books);
         }
 
         public async Task<BookDTO> GetBookByIdAsync(int id)
