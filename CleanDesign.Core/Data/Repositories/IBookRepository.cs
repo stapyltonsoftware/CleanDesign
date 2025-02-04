@@ -12,7 +12,7 @@ namespace CleanDesign.Core.Data.Repositories
         Task<IEnumerable<Book>> GetAllAsync();
         Task<Book> GetBookByIdAsync(int id);
         Task<Book> GetBookByISBNAsync(string isbn);
-        Task<IEnumerable<Book>> SearchBookByTitleAsync(string isbn);
+        Task<IEnumerable<Book>> SearchBookByTitleAsync(string title);
         Task<Book> AddBookAsync(Book book);
         Task UpdateBookAsync(Book book);
     }

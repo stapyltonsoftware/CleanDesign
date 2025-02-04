@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanDesign.Core\CleanDesign.Core.csproj" />
+    <ProjectReference Include="..\CleanDesign.Data.EntityFramework\CleanDesign.Data.EntityFramework.csproj" />
     <ProjectReference Include="..\CleanDesign.Data\CleanDesign.Data.csproj" />
     <ProjectReference Include="..\CleanDesign.ISBNService\CleanDesign.ISBNService.csproj" />
   </ItemGroup>

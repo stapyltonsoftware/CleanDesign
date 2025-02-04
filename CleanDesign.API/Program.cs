@@ -1,5 +1,6 @@
 using CleanDesign.Core;
 using CleanDesign.Data;
+using CleanDesign.Data.EntityFramework;
 using CleanDesign.ISBNService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCoreLayer();
 builder.Services.AddDataLayer(builder.Configuration.GetConnectionString("Default"));
+//builder.Services.AddEFDataLayer(builder.Configuration.GetConnectionString("Default"));
 builder.Services.AddISBNProvider();
 
 var app = builder.Build();
